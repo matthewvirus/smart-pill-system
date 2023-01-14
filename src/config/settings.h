@@ -1,0 +1,7 @@
+#define STEPPER_A 23
+#define STEPPER_B 24
+#define STEPPER_C 25
+#define STEPPER_D 26
+
+#define TILT_SENSOR 29
+#define OPTICAL_SENSOR 30
