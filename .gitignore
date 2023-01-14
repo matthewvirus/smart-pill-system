@@ -4,3 +4,4 @@
 .vscode/launch.json
 .vscode/ipch
 src/secret/secret.h
+.DS_Store
