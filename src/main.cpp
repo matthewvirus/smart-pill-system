@@ -9,18 +9,11 @@
 
 WiFiClient wifi_client;
 PubSubClient mqtt_client(wifi_client);
-
 CustomStepper stepper(STEPPER_A, STEPPER_B, STEPPER_C, STEPPER_D);
-
-char ssid[] = WIFI_SSID;
-char password[] = WIFI_PASSWORD;
-
-const char mqtt_server[] = MQTT_SERVER;
-const int mqtt_port = MQTT_PORT;
 
 void mqtt_setup()
 {
-    mqtt_client.setServer(mqtt_server, mqtt_port);
+    mqtt_client.setServer(MQTT_SERVER, MQTT_PORT);
     // mqtt_client.setCallback(/*here will be callback method*/);
 }
 
@@ -64,7 +57,7 @@ void stepper_control() {
 void setup()
 {
     Serial.begin(115200);
-    wifi_connection(ssid, password);
+    wifi_connection(WIFI_SSID, WIFI_PASSWORD);
     mqtt_setup();
     pinMode(TILT_SENSOR, INPUT);
     stepper.setRPM(12);
