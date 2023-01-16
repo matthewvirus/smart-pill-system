@@ -11,6 +11,9 @@ WiFiClient wifi_client;
 PubSubClient mqtt_client(wifi_client);
 CustomStepper stepper(STEPPER_A, STEPPER_B, STEPPER_C, STEPPER_D);
 
+char wifi_ssid[] = WIFI_SSID;
+char wifi_password[] = WIFI_PASSWORD;
+
 void mqtt_setup()
 {
     mqtt_client.setServer(MQTT_SERVER, MQTT_PORT);
@@ -36,7 +39,8 @@ int get_tilt_state()
     return digitalRead(TILT_SENSOR);
 }
 
-void check_tilt_state_and_send_message_to_mqtt() {
+void check_tilt_state_and_send_message_to_mqtt()
+{
     if (get_tilt_state() == HIGH) {
         char tilt_array[16];
         dtostrf(get_tilt_state(), 1, 2, tilt_array);
@@ -44,7 +48,8 @@ void check_tilt_state_and_send_message_to_mqtt() {
     }
 }
 
-void stepper_control() {
+void stepper_control()
+{
     if (stepper.isDone())
     {
         stepper.setDirection(CW);
@@ -57,7 +62,7 @@ void stepper_control() {
 void setup()
 {
     Serial.begin(115200);
-    wifi_connection(WIFI_SSID, WIFI_PASSWORD);
+    wifi_connection(wifi_ssid, wifi_password);
     mqtt_setup();
     pinMode(TILT_SENSOR, INPUT);
     stepper.setRPM(12);
