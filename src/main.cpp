@@ -5,6 +5,7 @@
 #include "wifi/wifi_connecting.h"
 #include "config/settings.h"
 #include "secret/secret.h"
+#include "util/client_util.h"
 
 WiFiClient wifi_client;
 PubSubClient mqtt_client(wifi_client);
@@ -16,13 +17,6 @@ char password[] = WIFI_PASSWORD;
 
 const char mqtt_server[] = MQTT_SERVER;
 const int mqtt_port = MQTT_PORT;
-
-String generate_client_id()
-{
-    String client_id = "ESP32SmartPillIoT";
-    client_id += (random(0xffff), HEX);
-    return client_id;
-}
 
 void mqtt_setup()
 {
