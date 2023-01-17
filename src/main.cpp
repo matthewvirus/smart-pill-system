@@ -17,7 +17,6 @@ char wifi_password[] = WIFI_PASSWORD;
 void mqtt_setup()
 {
     mqtt_client.setServer(MQTT_SERVER, MQTT_PORT);
-    // mqtt_client.setCallback(/*here will be callback method*/);
 }
 
 void mqtt_reconnect()
